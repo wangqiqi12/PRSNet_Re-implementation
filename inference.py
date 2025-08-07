@@ -124,10 +124,11 @@ def inference_and_visualize(checkpoint_path: str,
 def main():
     
     checkpoint_path = "./ckpts/model_epoch_0200_loss_0.082724.pth"
-    val_dataset_path = "./val_data/ShapeNet-toydata"
+    val_dataset_path = "./toy_data"
     output_dir = "inference_outputs"
-    num_samples = 5
-    
+    num_samples = 1
+    # NOTE: Modify the paths above as needed
+
     if not Path(checkpoint_path).exists():
         print(f"Error: checkpoint file does not exist: {checkpoint_path}")
         return
