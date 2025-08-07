@@ -8,7 +8,19 @@ A PyTorch re-implementation of **PRS-Net: Planar Reflective Symmetry Detection N
 
 ## Overview
 
-This project provides a clean, simplified re-implementation of PRS-Net, a deep learning model for detecting planar reflective symmetry in 3D voxelized models. The network takes a 32³ voxel grid as input and predicts symmetry plane parameters using a 3D CNN encoder followed by fully connected layers.
+
+该项目是对 PRS-Net 的一个简洁、简化版本的复现。PRS-Net 是一个用于检测三维体素模型中平面反射对称性的深度学习模型。该网络以$32 *32 *32$体素网格为输入，通过一个三维卷积神经网络编码器和后续的全连接层来预测对称平面的参数。
+
+为了简化实现，部分原论文中的实现细节和训练配置已被修改或省略。由于仅仅在ShapeNet非常小的子集上训练，该项目没有预测物体的旋转轴。
+
+该项目全部在cpu上完成，这使得代码更易于理解和用于复现。
+
+
+This project is a clean and simplified re-implementation of PRS-Net, a deep learning model designed to detect planar reflective symmetry in 3D voxelized models. The network takes a $32 *32 *32$ voxel grid as input and predicts the parameters of symmetry planes using a 3D CNN encoder followed by fully connected layers.
+
+To simplify the implementation, some details and training configurations from the original paper have been modified or omitted. Additionally, since the model is trained only on a very small subset of ShapeNet, it does not predict the object's rotational axis.
+
+The entire project runs on CPU, making the code easier to understand and suitable for research or educational purposes.
 
 ## Features
 
@@ -25,10 +37,10 @@ This project provides a clean, simplified re-implementation of PRS-Net, a deep l
 ### Example 1: Airplane Symmetry Detection
 ![Example 1](assets/eg1.png)
 
-### Example 2: Complex Object Analysis  
+### Example 2: Airplane Symmetry Detection
 ![Example 2](assets/eg2.png)
 
-### Example 3: Multi-view Visualization
+### Example 3: Airplane Symmetry Detection
 ![Example 3](assets/eg3.png)
 
 </div>
@@ -61,15 +73,6 @@ source prsnet_env/bin/activate  # On Windows: prsnet_env\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 ```
-
-### Dependencies
-
-- `torch>=2.0.0` - Deep learning framework
-- `torchvision>=0.15.0` - Computer vision utilities
-- `numpy>=1.21.0` - Numerical computing
-- `scipy>=1.7.0` - Scientific computing
-- `gradio>=4.0.0` - Web interface
-- `plotly>=5.15.0` - Interactive visualization
 
 ## Dataset Structure
 
@@ -122,37 +125,6 @@ The project includes several visualization utilities in the `viewer/` directory:
 - `shapnet_mesh_viewer.py` - 3D mesh visualization
 - `binvox_rw.py` - Binvox file I/O utilities
 
-## Model Details
-
-### Loss Function
-
-The training uses a combined loss:
-```
-Total Loss = Reconstruction Loss + λ * Regularization Loss
-```
-
-Where:
-- **Reconstruction Loss**: Mean Squared Error between predicted and ground truth
-- **Regularization Loss**: Encourages valid symmetry plane parameters
-- **λ (reg_weight)**: Balancing parameter (default: 1.0)
-
-### Network Architecture
-
-```
-Input: [B, 1, 32, 32, 32]
-│
-├── 3D CNN Encoder (5 layers)
-│   ├── Conv3D(1→4) + LeakyReLU + MaxPool3D
-│   ├── Conv3D(4→8) + LeakyReLU + MaxPool3D  
-│   ├── Conv3D(8→16) + LeakyReLU + MaxPool3D
-│   ├── Conv3D(16→32) + LeakyReLU + MaxPool3D
-│   └── Conv3D(32→64) + LeakyReLU + MaxPool3D
-│
-├── FC Branch 1: [64] → [32] → [16] → [4]
-└── FC Branch 2: [64] → [32] → [16] → [4]
-│
-Output: [B, 8] (Symmetry plane parameters)
-```
 
 ## File Structure
 
@@ -172,9 +144,6 @@ PRSNet_Re-implementation/
 └── 📁 toy_data/                    # Sample dataset
 ```
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Citation
 
@@ -193,8 +162,3 @@ If you use this implementation in your research, please cite the original paper:
 
 This project is for research and educational purposes. Please refer to the original paper for licensing terms.
 
-## Acknowledgments
-
-- Original PRS-Net paper authors
-- PyTorch team for the excellent framework
-- ShapeNet dataset contributors
