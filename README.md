@@ -92,10 +92,13 @@ python train.py
 ```
 
 **Training Configuration:**
-- Default batch size: 1
-- Learning rate: 1e-3 with ReduceLROnPlateau scheduler
-- Device: Auto-detection (CUDA/MPS/CPU)
-- Checkpoints saved every 10 epochs
+
+Since I just train it on a very small subset of ShapeNet(about 420 objects for training and 180 for validation), the config is slightly different from the official code: 
+
+- Batch size: 16
+- Learning rate: 2*1e-3 with ReduceLROnPlateau scheduler
+- Regular loss weight: 1.0
+- Device: CPU
 
 ### Inference
 
