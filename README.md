@@ -22,13 +22,6 @@ To simplify the implementation, some details and training configurations from th
 
 The entire project runs on CPU, making the code easier to understand and suitable for research or educational purposes.
 
-## Features
-
-- 🔥 **Clean PyTorch Implementation**: Modern, readable code structure
-- 🚀 **Easy Training Pipeline**: Streamlined training and inference scripts
-- 📊 **Built-in Visualization**: Integrated plotting and 3D visualization tools
-- 🎯 **Flexible Architecture**: Easily configurable model parameters
-- 📱 **Interactive Interface**: Gradio-based web interface for demonstrations
 
 ## Results
 
@@ -49,7 +42,7 @@ The entire project runs on CPU, making the code easier to understand and suitabl
 
 The PRSNet model consists of:
 - **3D CNN Encoder**: 5-layer 3D convolutional network (1→4→8→16→32→64 channels)
-- **Dual FC Heads**: Two separate fully connected branches for symmetry plane prediction
+- **Three FC Heads**: Three separate fully connected branches for symmetry plane prediction
 - **Input**: 32×32×32 voxel grid
 - **Output**: Symmetry plane parameters (normal vector + point on plane)
 
@@ -57,7 +50,7 @@ The PRSNet model consists of:
 
 ### Prerequisites
 - Python 3.8+
-- CUDA (optional, for GPU acceleration)
+- cpu (optional, GPU maybe better)
 
 ### Setup Environment
 
